@@ -1,6 +1,5 @@
 #include <iostream>
 
-
 class Point{
     private :
 
@@ -8,6 +7,10 @@ class Point{
         float y; 
 
     public :
+        
+        Point() : x(0.0), y(0.0) {}
+    
+        Point(const Point& other) : x(other.x), y(other.y) {}
 
         float getX() const { return x; }
         float getY() const { return y; }
@@ -18,7 +21,6 @@ class Point{
             std::cout << "Coordonnées du point : (" << getX() << ", " << getY() << ")" << std::endl;
         }
         
-
 };
 
 
@@ -28,7 +30,9 @@ int main(){
 
     point.setX(30.5);
     point.setY(40.3);
-
     point.print();
 
-}
+    Point point2 = point;
+    point2.print();
+
+};
