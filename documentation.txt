@@ -9,4 +9,4 @@ EX 1 :
     7-8-9-10) On crée un constructeur par défaut ainsi qu'un constructeur par copie afin de créer une instance qui est une copie de la première. 
     En créent seulement un constructeur par copie, on a une erreur "no matching function for call to" car on n'a aucune valeur par défaut.
 
-    11) 
+    11) Le constructeur avec 2 arguments doit aussi être initialisé dans la classe et prend des arguments à la création de l'instance.

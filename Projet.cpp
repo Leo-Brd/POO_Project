@@ -12,6 +12,8 @@ class Point{
     
         Point(const Point& other) : x(other.x), y(other.y) {}
 
+        Point(float newX, float newY) : x(newX), y(newY) {}
+
         float getX() const { return x; }
         float getY() const { return y; }
         void setX(float newX) { x = newX; }
@@ -34,5 +36,8 @@ int main(){
 
     Point point2 = point;
     point2.print();
+
+    Point point3(31.4, 22.8);
+    point3.print();
 
 };
