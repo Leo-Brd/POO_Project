@@ -6,4 +6,7 @@ EX 1 :
 
     6) Pour que les attributs ne soient pas disponibles depuis le main, il faut qu'ils soient privés en créant des setters et des getters.
 
-    
+    7-8-9-10) On crée un constructeur par défaut ainsi qu'un constructeur par copie afin de créer une instance qui est une copie de la première. 
+    En créent seulement un constructeur par copie, on a une erreur "no matching function for call to" car on n'a aucune valeur par défaut.
+
+    11) 
