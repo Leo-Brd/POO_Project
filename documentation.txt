@@ -1,0 +1,9 @@
+EX 1 :
+
+    4) On crée la méthode print en utilisant std::cout et std::endl
+
+    5) Pour appeller la méthode dans la fonction main, il faut qu'elle soit publique.
+
+    6) Pour que les attributs ne soient pas disponibles depuis le main, il faut qu'ils soient privés en créant des setters et des getters.
+
+    

@@ -14,7 +14,7 @@ class Point{
         void setX(float newX) { x = newX; }
         void setY(float newY) { y = newY; }
 
-        void AfficherCoordonnees(){
+        void print(){
             std::cout << "Coordonnées du point : (" << getX() << ", " << getY() << ")" << std::endl;
         }
         
@@ -29,6 +29,6 @@ int main(){
     point.setX(30.5);
     point.setY(40.3);
 
-    point.AfficherCoordonnees();
+    point.print();
 
 }
