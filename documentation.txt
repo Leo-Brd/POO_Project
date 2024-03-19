@@ -10,3 +10,5 @@ EX 1 :
     En créent seulement un constructeur par copie, on a une erreur "no matching function for call to" car on n'a aucune valeur par défaut.
 
     11) Le constructeur avec 2 arguments doit aussi être initialisé dans la classe et prend des arguments à la création de l'instance.
+
+    13) La fonction scale permet de modifier les valeurs de l'instance point, ce qui modifie aussi les valeurs de point2.

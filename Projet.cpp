@@ -22,6 +22,11 @@ class Point{
         void print(){
             std::cout << "Coordonnées du point : (" << getX() << ", " << getY() << ")" << std::endl;
         }
+
+        void scale(float flottant){
+            x *= flottant;
+            y *= flottant;
+        };
         
 };
 
@@ -34,10 +39,13 @@ int main(){
     point.setY(40.3);
     point.print();
 
+    point.scale(5.36);
+
     Point point2 = point;
     point2.print();
 
     Point point3(31.4, 22.8);
     point3.print();
+
 
 };
