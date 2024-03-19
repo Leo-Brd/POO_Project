@@ -8,6 +8,7 @@ class Point{
 
     public :
         
+        Point() : x(0.0), y(0.0) {}
     
         Point(const Point& other) : x(other.x), y(other.y) {}
 
