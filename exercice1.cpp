@@ -10,7 +10,7 @@ class Point{
         
         Point() : x(0.0), y(0.0) {}
     
-        Point(const Point& other) : x(other.x), y(other.y) {}
+        Point(const Point &other) : x(other.x), y(other.y) {}
 
         Point(float newX, float newY) : x(newX), y(newY) {}
 
