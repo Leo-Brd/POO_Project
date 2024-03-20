@@ -1,5 +1,5 @@
 #include <iostream>
-#include <string>
+#include <cstring>
 
 class Weapon{
     public:
@@ -24,12 +24,12 @@ class RPCharacter{
 
         const char* getName() const { return name; }
         void setName(const char* newName) {
-            strncpy(name, newName, 14);
-            name[14] = '\0';
-    }
+            strncpy(name, newName, 14); 
+            name[14] = '\0'; 
+        };
 
 
-}
+};
 
 
 
