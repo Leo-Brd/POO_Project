@@ -2,10 +2,21 @@
 #include <cstring>
 
 class Weapon{
-    public:
+    private:
 
         char name[20];
         int damage;
+
+    public:
+
+        Weapon() : name("Hand"), damage(1) {}
+        Weapon(const char newName[], int newDamage) : damage(newDamage) {
+            strncpy(name, newName, sizeof(name) - 1); 
+            name[sizeof(name) - 1] = '\0'; 
+        }
+
+        const char* getName() const { return name; }
+        int getDamage() const { return damage; }
 
 };
 
@@ -24,8 +35,8 @@ class RPCharacter{
 
         const char* getName() const { return name; }
         void setName(const char* newName) {
-            strncpy(name, newName, 14); 
-            name[14] = '\0'; 
+            strncpy(name, newName, sizeof(name) - 1); 
+            name[sizeof(name) - 1] = '\0'; 
         };
 
 
