@@ -48,12 +48,20 @@ class RPCharacter{
             weapon_used = Weapon();
             is_dead = false;
 
-        }
+        };
 
         const char* getName() const { return name; }
         void setName(const char* newName) {
             strncpy(name, newName, sizeof(name) - 1); 
             name[sizeof(name) - 1] = '\0'; 
+        };
+
+        void apply_damage(int damage_value){
+            hp -= damage_value;
+            if (hp <= 0){
+                is_dead = true;
+                hp = 0;
+            };
         };
 
 
