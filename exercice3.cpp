@@ -45,6 +45,7 @@ class RPCharacter{
             hp = 100;
             weapon_quantity = 0;
             weapon_list.push_back(Weapon());
+            weapon_list.resize(10); 
             weapon_used = Weapon();
             is_dead = false;
 
@@ -76,6 +77,21 @@ class RPCharacter{
                     weapon_list.push_back(Weapon("Hand", level/2));
                 };
                 return Weapon();
+            };
+        };
+
+        void Attack(RPCharacter& targetCharacter) {
+            int damage = get_weapon().getDamage(); 
+            targetCharacter.apply_damage(damage); 
+            xp_points += damage;
+        };
+
+        void store_weapon(Weapon weapon){
+            if (weapon_quantity == 10){
+                weapon_list.pop_back();
+                weapon_list.push_back(weapon);
+            }else{
+                weapon_list.push_back(weapon);
             };
         };
 
