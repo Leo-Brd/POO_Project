@@ -10,7 +10,7 @@ class Weapon{
 
     public:
 
-        Weapon() : name("Hand"), damage(1) {}
+        Weapon() : name("None"), damage(0) {}
 
         Weapon(const char newName[], int newDamage) : damage(newDamage) {
             strncpy(name, newName, sizeof(name) - 1); 
@@ -61,6 +61,21 @@ class RPCharacter{
             if (hp <= 0){
                 is_dead = true;
                 hp = 0;
+            };
+        };
+
+        Weapon get_weapon(){
+            if (weapon_quantity > 0){
+                return weapon_used;
+            }else if (weapon_quantity == 0){
+                weapon_quantity += 1;
+                weapon_list.clear();
+                if (level = 1){
+                    weapon_list.push_back(Weapon("Hand", 1));
+                }else{
+                    weapon_list.push_back(Weapon("Hand", level/2));
+                };
+                return Weapon();
             };
         };
 
