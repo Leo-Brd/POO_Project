@@ -146,6 +146,41 @@ class RPCharacter{
 
 int main(void){
 
+    // Création des deux joueurs
+    RPCharacter Noamus = RPCharacter("Noamus");
+    RPCharacter Antoinus = RPCharacter("Antoinus");
+
+    // Les deux joueurs sortent leurs poings
+    Noamus.get_weapon(0);
+    Antoinus.get_weapon(0);
+
+    // Noamus est en possession d'une sarbacane malicieuse ainsi que d'une baguette magique
+    Noamus.store_weapon(Weapon("Sarbacane", 10));
+    Noamus.store_weapon(Weapon("Baguette magique", 20));
+
+    // Les deux joueurs se donnent quelques coups
+    Noamus.Attack(Antoinus);
+    Antoinus.Attack(Noamus);
+    Noamus.Attack(Antoinus);
+    Antoinus.Attack(Noamus);
+
+    // Noamus brandit sa sarbacane et use de sa malice en tirant deux épines aux pieds d'Antoinus
+    Noamus.get_weapon(1);
+    Noamus.Attack(Antoinus);
+    Noamus.Attack(Antoinus);
+
+    // Antoinus est pris au dépourvu mais trouve un fléaux géant à ses pieds qu'il ramasse
+    Antoinus.store_weapon(Weapon("Fléaux Géant", 30));
+
+    // Se trouvant à distance, Antoinus ne peut pas porter de coup à Noamus. 
+    // Ce dernier en profite pour sortir sa baguette magique et lancer une attaque remplie de fourberie
+    Noamus.get_weapon(2);
+    Noamus.Attack(Antoinus);
+
+    // Après avoir encaissé cette attaque farfelue, Antoinus court en direction de Noamus et le tranche avec son fléaux
+    Antoinus.get_weapon(1);
+    Antoinus.Attack(Noamus);
+
 
 
 
