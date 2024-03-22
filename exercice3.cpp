@@ -49,6 +49,7 @@ class RPCharacter{
             weapon_list.resize(10); 
             weapon_used = Weapon();
             is_dead = false;
+            std::cout << "Le Joueur " << getName() << " apparait " << std::endl;
 
         };
 
@@ -60,7 +61,9 @@ class RPCharacter{
 
         void apply_damage(int damage_value){
             hp -= damage_value;
+            std::cout << "Le Joueur " << getName() << " perd " << damage_value << " hp !" << std::endl;
             if (hp <= 0){
+                std::cout << "Le Joueur " << getName() << " est mort !" << std::endl;
                 is_dead = true;
                 hp = 0;
             };
@@ -70,6 +73,7 @@ class RPCharacter{
             if (weapon_quantity == 0){
                 weapon_quantity += 1;
                 weapon_list.clear();
+                std::cout << "Le Joueur " << getName() << " se muni de ses poings" << std::endl;
                 if (level == 1){
                     weapon_list.push_back(Weapon("Hand", 1));
                 }else{
@@ -91,10 +95,12 @@ class RPCharacter{
                 } else {
                     return weapon_list[indice];
                 }
+                std::cout << "Le Joueur " << getName() << " sort son arme " << weapon_list[indice].getName() << std::endl;
             }
         };
 
         void Attack(RPCharacter& targetCharacter) {
+            std::cout << "Le Joueur " << getName() << " attaque le joueur " << targetCharacter.getName() <<  std::endl;
             int damage = weapon_used.getDamage(); 
             targetCharacter.apply_damage(damage); 
             xp_points += damage;
@@ -105,6 +111,8 @@ class RPCharacter{
                 weapon_list.pop_back();
             };
             weapon_list.push_back(weapon);
+            weapon_quantity += 1;
+            std::cout << "Le Joueur " << getName() << " ajoute l'arme " << weapon.getName() << " à son inventaire !" << std::endl;
         };
 
         void switch_weapon(int indice){
@@ -135,8 +143,10 @@ class RPCharacter{
 
         void drink_potion(int value){
             hp += value;
+            std::cout << "Le Joueur " << getName() << " se régénère de " << value << " hp !" << std::endl;
             if ( hp > 100 ){
                 hp = 100;
+                std::cout << "Le Joueur " << getName() << " est full vie " << std::endl;
             }
         };
 
@@ -174,7 +184,7 @@ int main(void){
 
     // Se trouvant à distance, Antoinus ne peut pas porter de coup à Noamus. 
     // Ce dernier en profite pour sortir sa baguette magique et lancer une attaque remplie de fourberie
-    Noamus.get_weapon(2);
+    Noamus.switch_weapon(2);
     Noamus.Attack(Antoinus);
 
     // Après avoir encaissé cette attaque farfelue, Antoinus court en direction de Noamus et le tranche avec son fléaux
@@ -182,7 +192,7 @@ int main(void){
     Antoinus.Attack(Noamus);
 
     // Noamus recule et brandit une potion de shield bleue tah fortnite prime qu'il engloutit
-    Noamus.drink_potion(20);
+    Noamus.drink_potion(50);
 
     // Cela poussa Antoinus à user de la malveillance max
     // La malice ne suffit pas à Noamus pour stopper la série d'attaque d'Antoinus 
@@ -192,7 +202,7 @@ int main(void){
     Antoinus.Attack(Noamus);
 
     // Antoinus crie de rage après avoir éteint le petit lutin espiègle Noamus
-    
+
 
 
 
