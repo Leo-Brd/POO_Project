@@ -66,20 +66,18 @@ class RPCharacter{
         };
 
         Weapon get_weapon(int indice){
-            if (indice == 0){
-                if (weapon_quantity > 0){
-                    return weapon_used;
-                }else if (weapon_quantity == 0){
-                    weapon_quantity += 1;
-                    weapon_list.clear();
-                    if (level = 1){
-                        weapon_list.push_back(Weapon("Hand", 1));
-                    }else{
-                        weapon_list.push_back(Weapon("Hand", level/2));
-                    };
-                    return Weapon();
+            if (weapon_quantity == 0){
+                weapon_quantity += 1;
+                weapon_list.clear();
+                if (level == 1){
+                    weapon_list.push_back(Weapon("Hand", 1));
+                }else{
+                    weapon_list.push_back(Weapon("Hand", level/2));
+                };
+                return weapon_list[1];            
+            };
             
-            }else if ( indice > 0 || indice < 10){
+            if ( indice > -1 || indice < 10){
                 if (weapon_list[indice].getName() == "None") {
                     int last_weapon_index = -1;
                     for (int i = 0; i < 10; ++i) {
@@ -92,9 +90,7 @@ class RPCharacter{
                 } else {
                     return weapon_list[indice];
                 }
-                
             }
-            
         };
 
         void Attack(RPCharacter& targetCharacter) {
@@ -133,6 +129,13 @@ class RPCharacter{
             } else {
                 weapon_used = weapon_list[indice];
                 std::cout << "Arme switchée à l'emplacement " << indice << std::endl;
+            }
+        };
+
+        void drink_potion(int value){
+            hp += value;
+            if ( hp > 100 ){
+                hp = 100;
             }
         };
 
