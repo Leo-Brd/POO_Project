@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstring>
+#include <string>
 #include <vector>
 
 class Weapon{
@@ -78,10 +79,10 @@ class RPCharacter{
             };
             
             if ( indice > -1 || indice < 10){
-                if (weapon_list[indice].getName() == "None") {
+                if (std::strcmp(weapon_list[indice].getName(), "None") == 0) {
                     int last_weapon_index = -1;
                     for (int i = 0; i < 10; ++i) {
-                        if (weapon_list[i].getName() != "None") {
+                        if (std::strcmp(weapon_list[i].getName(), "None") == 0) {
                             last_weapon_index = i;
                         }
                     }
@@ -94,7 +95,7 @@ class RPCharacter{
         };
 
         void Attack(RPCharacter& targetCharacter) {
-            int damage = get_weapon().getDamage(); 
+            int damage = weapon_used.getDamage(); 
             targetCharacter.apply_damage(damage); 
             xp_points += damage;
         };
@@ -112,10 +113,10 @@ class RPCharacter{
                 return;
             };
 
-            if (weapon_list[indice].getName() == "None") {
+            if (std::strcmp(weapon_list[indice].getName(), "None") == 0) {
                 int last_weapon_index = -1;
                 for (int i = 0; i < 10; ++i) {
-                    if (weapon_list[i].getName() != "None") {
+                    if (std::strcmp(weapon_list[i].getName(), "None") == 0) {
                         last_weapon_index = i;
                     }
                 }
