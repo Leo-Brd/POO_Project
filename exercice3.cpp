@@ -79,7 +79,8 @@ class RPCharacter{
                 }else{
                     weapon_list.push_back(Weapon("Hand", level/2));
                 };
-                return weapon_list[1];            
+                weapon_used = weapon_list[0];
+                return weapon_list[0];            
             };
             
             if ( indice > -1 || indice < 10){
@@ -175,7 +176,7 @@ int main(void){
     Antoinus.Attack(Noamus);
 
     // Noamus brandit sa sarbacane et use de sa malice en tirant deux épines aux pieds d'Antoinus
-    Noamus.get_weapon(1);
+    Noamus.switch_weapon(1);
     Noamus.Attack(Antoinus);
     Noamus.Attack(Antoinus);
 
@@ -188,7 +189,7 @@ int main(void){
     Noamus.Attack(Antoinus);
 
     // Après avoir encaissé cette attaque farfelue, Antoinus court en direction de Noamus et le tranche avec son fléaux
-    Antoinus.get_weapon(1);
+    Antoinus.switch_weapon(1);
     Antoinus.Attack(Noamus);
 
     // Noamus recule et brandit une potion de shield bleue tah fortnite prime qu'il engloutit
@@ -196,6 +197,7 @@ int main(void){
 
     // Cela poussa Antoinus à user de la malveillance max
     // La malice ne suffit pas à Noamus pour stopper la série d'attaque d'Antoinus 
+    std::cout << "MALVEILLANCE MAX !!!!!!!!!!!!" << std::endl;
     Antoinus.Attack(Noamus);
     Antoinus.Attack(Noamus);
     Antoinus.Attack(Noamus);
