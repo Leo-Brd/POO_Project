@@ -65,19 +65,36 @@ class RPCharacter{
             };
         };
 
-        Weapon get_weapon(){
-            if (weapon_quantity > 0){
-                return weapon_used;
-            }else if (weapon_quantity == 0){
-                weapon_quantity += 1;
-                weapon_list.clear();
-                if (level = 1){
-                    weapon_list.push_back(Weapon("Hand", 1));
-                }else{
-                    weapon_list.push_back(Weapon("Hand", level/2));
-                };
-                return Weapon();
-            };
+        Weapon get_weapon(int indice){
+            if (indice == 0){
+                if (weapon_quantity > 0){
+                    return weapon_used;
+                }else if (weapon_quantity == 0){
+                    weapon_quantity += 1;
+                    weapon_list.clear();
+                    if (level = 1){
+                        weapon_list.push_back(Weapon("Hand", 1));
+                    }else{
+                        weapon_list.push_back(Weapon("Hand", level/2));
+                    };
+                    return Weapon();
+            
+            }else if ( indice > 0 || indice < 10){
+                if (weapon_list[indice].getName() == "None") {
+                    int last_weapon_index = -1;
+                    for (int i = 0; i < 10; ++i) {
+                        if (weapon_list[i].getName() != "None") {
+                            last_weapon_index = i;
+                        }
+                    }
+                    if (last_weapon_index != -1) {return weapon_list[last_weapon_index];}
+
+                } else {
+                    return weapon_list[indice];
+                }
+                
+            }
+            
         };
 
         void Attack(RPCharacter& targetCharacter) {
