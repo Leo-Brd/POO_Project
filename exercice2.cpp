@@ -3,40 +3,54 @@
 
 class Complexe {
     private:
-        float re;
-        float im;
+        float mod;
+        float arg;
     
     public:
         
-        Complexe() : re(0.0), im(0.0) {}
-        Complexe(const Complexe &other) : re(other.re), im(other.im) {}
-
-        float getRe() {return re; }
-        float getIm() {return im; }
+        Complexe() : mod(0.0), arg(0.0) {}
+        Complexe(const Complexe &other) : mod(other.mod), arg(other.arg) {}
         
-        void setRe(float newRe) {re = newRe; }
-        void setIm(float newIm) {im = newIm; }
+        float getMod() { return mod; }
+        
+        float getArg() { return arg; }
+        
+        float getRe() { return mod * cos(arg); }
 
-        void getMod() {
-            std::cout << "Module :" << sqrt(re*re+ im*im) << std::endl;
-            }
+        float getIm() { return mod * sin(arg); }
 
-        void getArg() {
-            std::cout << "Argument : " << atan2(im, re) << std::endl; 
+        void setRe(float newRe) {
+            float im = getIm();
+            mod = sqrt(newRe * newRe + getIm() * getIm());
+            arg = atan2(im, newRe);
         }
 
+        void setIm(float newIm) { 
+            float re = getRe();
+            arg = atan2(newIm, getRe());
+            mod = sqrt(re * re + getIm() * getIm());
+        }
+        
+        void setMod(float newMod) { mod = newMod; }
+
+        void setArg(float newArg) { arg = newArg; }
+
+
+
         void print(){
-            std::cout << "Partie réelle : " << getRe() << ", Partie imaginaire : " << getIm() << std::endl;
+            std::cout << "Partie réelle : " << getRe() << ", Partie imaginaire : " << getIm() << ", Module : " << getMod() << ", Argument :" << getArg() << std::endl;
         }
 };
 
 int main() {
-    Complexe nbComplexe;
-    nbComplexe.print();
-    nbComplexe.setRe(4.3);
-    nbComplexe.setIm(-0.453);
-    nbComplexe.print();
-    nbComplexe.getMod();
-    nbComplexe.getArg();
+    Complexe nb;
+    nb.print();
+    nb.setRe(4.3);
+    nb.print();
+    nb.setIm(-0.45);
+    nb.print();
+    nb.setMod(5.0);
+    nb.setArg(0.643);
+    nb.print();
     return 0;
-};
+}
