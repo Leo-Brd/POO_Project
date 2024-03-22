@@ -181,6 +181,19 @@ int main(void){
     Antoinus.get_weapon(1);
     Antoinus.Attack(Noamus);
 
+    // Noamus recule et brandit une potion de shield bleue tah fortnite prime qu'il engloutit
+    Noamus.drink_potion(20);
+
+    // Cela poussa Antoinus à user de la malveillance max
+    // La malice ne suffit pas à Noamus pour stopper la série d'attaque d'Antoinus 
+    Antoinus.Attack(Noamus);
+    Antoinus.Attack(Noamus);
+    Antoinus.Attack(Noamus);
+    Antoinus.Attack(Noamus);
+
+    // Antoinus crie de rage après avoir éteint le petit lutin espiègle Noamus
+    
+
 
 
 
