@@ -1,0 +1,188 @@
+#include <iostream>
+#include <cstring>
+#include <string>
+#include <vector>
+
+class Weapon{
+    private:
+
+        char name[20];
+        int damage;
+
+    public:
+
+        Weapon() : name("None"), damage(0) {}
+
+        Weapon(const char newName[], int newDamage) : damage(newDamage) {
+            strncpy(name, newName, sizeof(name) - 1); 
+            name[sizeof(name) - 1] = '\0'; 
+        }
+
+        const char* getName() const { return name; }
+        int getDamage() const { return damage; }
+
+};
+
+class RPCharacter{
+    private:
+
+        char name[15];
+        int level;
+        int xp_points;
+        int hp;
+        std::vector<Weapon> weapon_list;
+        int weapon_quantity;
+        Weapon weapon_used;
+        bool is_dead;
+
+    public:
+
+        RPCharacter(const char newName[]) {
+            strncpy(name, newName, sizeof(name) - 1); 
+            name[sizeof(name) - 1] = '\0'; 
+
+            level = 1;
+            xp_points = 0;
+            hp = 100;
+            weapon_quantity = 0;
+            weapon_list.push_back(Weapon());
+            weapon_list.resize(10); 
+            weapon_used = Weapon();
+            is_dead = false;
+
+        };
+
+        const char* getName() const { return name; }
+        void setName(const char* newName) {
+            strncpy(name, newName, sizeof(name) - 1); 
+            name[sizeof(name) - 1] = '\0'; 
+        };
+
+        void apply_damage(int damage_value){
+            hp -= damage_value;
+            if (hp <= 0){
+                is_dead = true;
+                hp = 0;
+            };
+        };
+
+        Weapon get_weapon(int indice){
+            if (weapon_quantity == 0){
+                weapon_quantity += 1;
+                weapon_list.clear();
+                if (level == 1){
+                    weapon_list.push_back(Weapon("Hand", 1));
+                }else{
+                    weapon_list.push_back(Weapon("Hand", level/2));
+                };
+                return weapon_list[1];            
+            };
+            
+            if ( indice > -1 || indice < 10){
+                if (std::strcmp(weapon_list[indice].getName(), "None") == 0) {
+                    int last_weapon_index = -1;
+                    for (int i = 0; i < 10; ++i) {
+                        if (std::strcmp(weapon_list[i].getName(), "None") == 0) {
+                            last_weapon_index = i;
+                        }
+                    }
+                    if (last_weapon_index != -1) {return weapon_list[last_weapon_index];}
+
+                } else {
+                    return weapon_list[indice];
+                }
+            }
+        };
+
+        void Attack(RPCharacter& targetCharacter) {
+            int damage = weapon_used.getDamage(); 
+            targetCharacter.apply_damage(damage); 
+            xp_points += damage;
+        };
+
+        void store_weapon(Weapon weapon){
+            if (weapon_quantity == 10){
+                weapon_list.pop_back();
+            };
+            weapon_list.push_back(weapon);
+        };
+
+        void switch_weapon(int indice){
+            if ( indice < 0 || indice > 9){
+                std::cout << "Veuillez rentrer un emplacement valide" << std::endl;
+                return;
+            };
+
+            if (std::strcmp(weapon_list[indice].getName(), "None") == 0) {
+                int last_weapon_index = -1;
+                for (int i = 0; i < 10; ++i) {
+                    if (std::strcmp(weapon_list[i].getName(), "None") == 0) {
+                        last_weapon_index = i;
+                    }
+                }
+
+                if (last_weapon_index != -1) {
+                    weapon_used = weapon_list[last_weapon_index];
+                    std::cout << "Arme switchée à l'emplacement " << last_weapon_index << std::endl;
+                } else {
+                    std::cout << "La liste des armes est vide" << std::endl;
+                }
+            } else {
+                weapon_used = weapon_list[indice];
+                std::cout << "Arme switchée à l'emplacement " << indice << std::endl;
+            }
+        };
+
+        void drink_potion(int value){
+            hp += value;
+            if ( hp > 100 ){
+                hp = 100;
+            }
+        };
+
+};
+
+
+
+int main(void){
+
+    // Création des deux joueurs
+    RPCharacter Noamus = RPCharacter("Noamus");
+    RPCharacter Antoinus = RPCharacter("Antoinus");
+
+    // Les deux joueurs sortent leurs poings
+    Noamus.get_weapon(0);
+    Antoinus.get_weapon(0);
+
+    // Noamus est en possession d'une sarbacane malicieuse ainsi que d'une baguette magique
+    Noamus.store_weapon(Weapon("Sarbacane", 10));
+    Noamus.store_weapon(Weapon("Baguette magique", 20));
+
+    // Les deux joueurs se donnent quelques coups
+    Noamus.Attack(Antoinus);
+    Antoinus.Attack(Noamus);
+    Noamus.Attack(Antoinus);
+    Antoinus.Attack(Noamus);
+
+    // Noamus brandit sa sarbacane et use de sa malice en tirant deux épines aux pieds d'Antoinus
+    Noamus.get_weapon(1);
+    Noamus.Attack(Antoinus);
+    Noamus.Attack(Antoinus);
+
+    // Antoinus est pris au dépourvu mais trouve un fléaux géant à ses pieds qu'il ramasse
+    Antoinus.store_weapon(Weapon("Fléaux Géant", 30));
+
+    // Se trouvant à distance, Antoinus ne peut pas porter de coup à Noamus. 
+    // Ce dernier en profite pour sortir sa baguette magique et lancer une attaque remplie de fourberie
+    Noamus.get_weapon(2);
+    Noamus.Attack(Antoinus);
+
+    // Après avoir encaissé cette attaque farfelue, Antoinus court en direction de Noamus et le tranche avec son fléaux
+    Antoinus.get_weapon(1);
+    Antoinus.Attack(Noamus);
+
+
+
+
+
+};
