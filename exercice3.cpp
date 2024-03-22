@@ -89,12 +89,35 @@ class RPCharacter{
         void store_weapon(Weapon weapon){
             if (weapon_quantity == 10){
                 weapon_list.pop_back();
-                weapon_list.push_back(weapon);
-            }else{
-                weapon_list.push_back(weapon);
             };
+            weapon_list.push_back(weapon);
         };
 
+        void switch_weapon(int indice){
+            if ( indice < 0 || indice > 9){
+                std::cout << "Veuillez rentrer un emplacement valide" << std::endl;
+                return;
+            };
+
+            if (weapon_list[indice].getName() == "None") {
+                int last_weapon_index = -1;
+                for (int i = 0; i < 10; ++i) {
+                    if (weapon_list[i].getName() != "None") {
+                        last_weapon_index = i;
+                    }
+                }
+
+                if (last_weapon_index != -1) {
+                    weapon_used = weapon_list[last_weapon_index];
+                    std::cout << "Arme switchée à l'emplacement " << last_weapon_index << std::endl;
+                } else {
+                    std::cout << "La liste des armes est vide" << std::endl;
+                }
+            } else {
+                weapon_used = weapon_list[indice];
+                std::cout << "Arme switchée à l'emplacement " << indice << std::endl;
+            }
+        };
 
 };
 
