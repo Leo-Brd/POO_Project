@@ -188,7 +188,7 @@ int main(void){
     Noamus.switch_weapon(2);
     Noamus.Attack(Antoinus);
 
-    // Après avoir encaissé cette attaque farfelue, Antoinus court en direction de Noamus et le tranche avec son fléaux
+    // Après avoir encaissé cette attaque farfelue, Antoinus court en direction de Noamus et le frappe avec son fléaux
     Antoinus.switch_weapon(1);
     Antoinus.Attack(Noamus);
 
